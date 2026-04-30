@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: insta-pod2 
+  labels:
+    app: instagram 
+    env: production
+spec:
+  containers:
+    - name: insta-cont 
+      image: devopshubg333/batch16d:fb_httpd 
+
+    - name: insta-side-car-cont
+      image: devopshubg333/batch16d:fb_httpd 
