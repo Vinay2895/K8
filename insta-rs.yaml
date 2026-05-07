@@ -1,0 +1,28 @@
+
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: insta-rs 
+  labels:
+    app: instagram 
+    env: production 
+
+spec:
+  selector:
+    matchLabels:
+      app: instagram 
+
+  replicas: 2
+  template:
+    metadata:
+      name: insta-pod
+      labels:
+        app: instagram 
+       
+    spec:
+      containers:
+        - name: insta-pod-cont
+          image: devopshubg333/batch16d:fb_httpd
+          ports:
+            - containerPort: 80
