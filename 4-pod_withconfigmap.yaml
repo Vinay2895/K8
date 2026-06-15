@@ -1,0 +1,15 @@
+
+--- 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: configmap-ex-pod 
+
+spec: 
+  containers:
+    - name: insta-pod-cont
+      image: devopshubg333/batch16d:fb_httpd
+
+      envFrom:
+        - configMapRef:
+            name: mc-config

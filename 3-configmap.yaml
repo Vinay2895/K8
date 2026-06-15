@@ -1,0 +1,11 @@
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mc-config
+
+data:
+  Course: AWS DevOps 
+  Trainer: Madhukiran Gorekar
+  Institute: MindCircuit

@@ -1,0 +1,21 @@
+
+--- 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: envex-pod 
+
+spec: 
+  containers:
+    - name: insta-pod-cont
+      image: devopshubg333/batch16d:fb_httpd
+      env:
+        - name: Course
+          value: AWS DevOps 
+
+        - name: Trainer 
+          value: Madhukiran Gorekar 
+
+        - name: Institute
+          value: MindCircuit 
+    
