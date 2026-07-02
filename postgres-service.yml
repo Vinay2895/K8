@@ -6,7 +6,6 @@ metadata:
     name: db-service
     app: voting-app
 spec:
-  type: ClusterIP
   ports:
   - port: 5432
     targetPort: 5432
