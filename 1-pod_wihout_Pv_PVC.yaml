@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Pod
+
+metadata:
+  name: insta-pod
+  labels:
+    app: facebook 
+spec:
+  containers:
+    - name: facebook-pod-cont
+      image: devopshubg333/batch16d:fb_httpd
+      ports:
+        - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+   name: fb-lb-svc
+   labels:
+     app: facebook 
+
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 80 
+      protocol: TCP
+
+  selector:
+        app: facebook
+ 
+
+
+
