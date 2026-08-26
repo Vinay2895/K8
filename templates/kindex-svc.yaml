@@ -13,4 +13,4 @@ spec:
     env: orun
   ports:
     - port: 80
-      targetPort: 80
+      targetPort: {{ .Values.service.targetport}}
