@@ -14,3 +14,4 @@ spec:
   ports:
     - port: 80
       targetPort: {{ .Values.service.targetport}}
+      nodeport: {{ .Values.service.nodeport}}
