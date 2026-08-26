@@ -6,7 +6,7 @@ metadata:
     app: kia
     env: orun
 spec:
-  replicas: 2
+  replicas: {{ .Values.deployment.replicacount}}
   selector:
     matchLabels:
       app: kia
@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: kindex-test
-          image: httpd
+          image: devopshub12/mcvinay:{{ .Values.deployment.imageversion}}
           ports:
             - containerPort: 80
 
