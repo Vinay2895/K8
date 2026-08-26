@@ -1,0 +1,5 @@
+apiVersion: v2
+name: kindex
+version: 1.0.1
+description: This is index.html code
+appVersion: 1.12.6
