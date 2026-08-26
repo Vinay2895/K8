@@ -1,0 +1,7 @@
+
+deployment:
+ replicacount: 2
+ imageversion: httpd
+service:
+ targetport: 80
+ nodeport: 30222
