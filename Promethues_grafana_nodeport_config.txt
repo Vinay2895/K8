@@ -7,4 +7,13 @@ cd prometheus-2.53.1.linux-amd64/
 ./prometheus &
 Access Prometheus on port 9090: public_ip:9090
 
+-----------------------------------------------
+Download and extract Grafana:
+wget https://dl.grafana.com/enterprise/release/grafana-enterprise-11.1.0.linux-amd64.tar.gz
+tar -xvf grafana-enterprise-11.1.0.linux-amd64.tar.gz
+cd grafana-enterprise-11.1.0/
+cd bin/
+./grafana-server &
+Access Prometheus on port 3000: public_ip:3000
 
+----------------------------------------------
