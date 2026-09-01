@@ -83,3 +83,25 @@ scrape_configs:
 Pgrep prometheus or ps -ef | grep prometheus
 Kill pid
 ./prometheus &
+
+--------------------------------
+Kube State Metrics
+Kube State Metrics (KSM) is a monitoring tool for Kubernetes clusters. It collects and exposes metrics about the state of the various
+Kubernetes objects (such as Deployments, Nodes, Pods, etc.) and makes these metrics available for monitoring and alerting.
+kube-state-metrics Setup
+
+1. Clone the kube-state-metrics repository and apply the standard examples:
+git clone https://github.com/kubernetes/kube-state-metrics.git
+kubectl apply -f kube-state-metrics/examples/standard
+
+3. Verify the deployment and expose the service:
+kubectl get all -n kube-system
+kubectl expose service kube-state-metrics --type=NodePort --name kube-state-metrics-ext -n kube-system
+---------------------------------------------
+Grafana Dashboards
+1860-Node Exporter Full
+6417 -Kubernetes Cluster (Prometheus)
+15451 -Kubernetes / Compute Resources / Node (Groups)
+9964- jenkins dashboard
+13105-K8S Dashboard 
+
