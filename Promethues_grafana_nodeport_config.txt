@@ -1,0 +1,10 @@
+Prometheus Setup
+1. Download and extract Prometheus:
+wget https://github.com/prometheus/prometheus/releases/download/v2.53.1/prometheus-2.53.1.linux-amd64.tar.gz
+tar -xvf prometheus-2.53.1.linux-amd64.tar.gz
+ Start the Prometheus:
+cd prometheus-2.53.1.linux-amd64/
+./prometheus &
+Access Prometheus on port 9090: public_ip:9090
+
+
