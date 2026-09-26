@@ -9,7 +9,7 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - "result.b16catsvsdogs.xyz
+    - "result.b16catsvsdogs.xyz"
   rules:
   - host: result.b16catsvsdogs.xyz
     http:
