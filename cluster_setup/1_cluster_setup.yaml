@@ -1,0 +1,23 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: Mycluster 
+  region: us-east-1
+
+managedNodeGroups:
+  - name: MC
+    spot: true   ## upto 90%  discouunt 
+    instanceTypes: ["m5.large"]  # Use multiple types for better availability
+    desiredCapacity: 2
+    minSize: 2
+    maxSize: 3
+    labels:
+      lifecycle: Ec2Spot
+    tags:
+      "k8s.io/cluster-autoscaler/enabled": "true"
+      "k8s.io/cluster-autoscaler/b16dcluster": "owned"
+    iam:
+      withAddonPolicies:
+        autoScaler: true
+        ebs: true
