@@ -1,0 +1,42 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: nginx-sts
+spec:
+  selector:
+    matchLabels:
+      app: nginx-statefulset-demo   # has to match .spec.template.metadata.labels
+     
+  replicas: 3 # by default is 1
+  serviceName: "nginx-headless"
+  minReadySeconds: 10 # by default is 0
+  template:
+    metadata:
+      labels:
+        app: nginx-statefulset-demo    # has to match .spec.selector.matchLabels
+    spec:
+      
+      containers:
+      - name: nginx
+        image: registry.k8s.io/nginx-slim:0.24
+        ports:
+        - containerPort: 80
+          name: web
+        volumeMounts:
+        - name: www                   #containers.volumeMounts.name shoud match  the metadata.name in the volumeClaimTemplates section.
+          mountPath: /usr/share/nginx/html
+
+      terminationGracePeriodSeconds: 10
+  
+  
+  # Instead of creating a PVC resource, We  can directly provide here in statefulset
+  volumeClaimTemplates:
+  - metadata:
+      name: www                        #containers.volumeMounts.name shoud match  the metadata.name in the volumeClaimTemplates section.
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "ebs-sc"
+      resources:
+        requests:
+          storage: 1Gi
