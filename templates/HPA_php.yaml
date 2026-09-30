@@ -22,14 +22,14 @@ spec:
           requests:
             cpu: 500m
           limits:
-            cpu: 1000m
+            cpu: 1200m
 
      
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: php-apache
+  name: php-apache-svc
   labels:
     run: php-apache
 spec:
@@ -52,5 +52,5 @@ spec:
     kind: Deployment
     name: php-apache
   minReplicas: 1
-  maxReplicas: 10
+  maxReplicas: 8
   targetCPUUtilizationPercentage: 50
