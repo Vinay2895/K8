@@ -6,12 +6,12 @@ metadata:
   region: us-east-1
 
 managedNodeGroups:
-  - name: MC
+  - name: mcng
     spot: true   ## upto 90%  discouunt 
     instanceTypes: ["m5.large"]  # Use multiple types for better availability
     desiredCapacity: 2
     minSize: 2
-    maxSize: 3
+    maxSize: 5
     labels:
       lifecycle: Ec2Spot
     tags:
