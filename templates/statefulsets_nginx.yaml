@@ -8,9 +8,9 @@ spec:
     matchLabels:
       app: nginx-statefulset-demo   # has to match .spec.template.metadata.labels
      
-  replicas: 3 # by default is 1
+  replicas: 4 # by default is 1
   serviceName: "nginx-headless"
-  minReadySeconds: 10 # by default is 0
+  minReadySeconds: 15 # by default is 0
   template:
     metadata:
       labels:
@@ -24,19 +24,19 @@ spec:
         - containerPort: 80
           name: web
         volumeMounts:
-        - name: www                   #containers.volumeMounts.name shoud match  the metadata.name in the volumeClaimTemplates section.
+        - name: www                   #containers.volumeMounts.name should match  the metadata.name in the volumeClaimTemplates section.
           mountPath: /usr/share/nginx/html
 
-      terminationGracePeriodSeconds: 10
+      terminationGracePeriodSeconds: 15
   
   
-  # Instead of creating a PVC resource, We  can directly provide here in statefulset
+  # Instead of creating a PVC resource, we  can directly provide here in the StatefulSet
   volumeClaimTemplates:
   - metadata:
-      name: www                        #containers.volumeMounts.name shoud match  the metadata.name in the volumeClaimTemplates section.
+      name: www                        #containers.volumeMounts.name should match  the metadata name in the volumeClaimTemplates section.
     spec:
       accessModes: [ "ReadWriteOnce" ]
       storageClassName: "ebs-sc"
       resources:
         requests:
-          storage: 1Gi
+          storage: 2Gi
