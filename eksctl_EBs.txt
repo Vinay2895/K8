@@ -1,0 +1,59 @@
+eksctl
+Create an IAM role and attach a policy. AWS maintains an AWS managed policy or you can create your own custom policy. You can create an IAM role and attach the AWS managed policy with the following command. Replace my-cluster with the name of your cluster. The command deploys an AWS CloudFormation stack that creates an IAM role and attaches the IAM policy to it.
+
+
+eksctl create iamserviceaccount \
+        --name ebs-csi-controller-sa \
+        --namespace kube-system \
+        --cluster my-cluster \
+        --role-name AmazonEKS_EBS_CSI_DriverRole \
+        --role-only \
+        --attach-policy-arn arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicyV2 \
+        --approve
+You can skip this step if you do not use a custom KMS key. If you use one for encryption on your Amazon EBS volumes, customize the IAM role as needed. For example, do the following:
+
+Copy and paste the following code into a new kms-key-for-encryption-on-ebs.json file. Replace custom-key-arn with the custom KMS key ARN.
+
+
+{
+      "Version":"2012-10-17",
+      "Statement": [
+        {
+          "Effect": "Allow",
+          "Action": [
+            "kms:CreateGrant",
+            "kms:ListGrants",
+            "kms:RevokeGrant"
+          ],
+          "Resource": ["arn:aws:kms:us-east-1:123456789012:key/1234abcd-12ab-34cd-56ef-1234567890ab"],
+          "Condition": {
+            "Bool": {
+              "kms:GrantIsForAWSResource": "true"
+            }
+          }
+        },
+        {
+          "Effect": "Allow",
+          "Action": [
+            "kms:Encrypt",
+            "kms:Decrypt",
+            "kms:ReEncrypt*",
+            "kms:GenerateDataKey*",
+            "kms:DescribeKey"
+          ],
+          "Resource": ["arn:aws:kms:us-east-1:123456789012:key/1234abcd-12ab-34cd-56ef-1234567890ab"]
+        }
+      ]
+    }
+Create the policy. You can change KMS_Key_For_Encryption_On_EBS_Policy to a different name. However, if you do, make sure to change it in later steps, too.
+
+
+aws iam create-policy \
+      --policy-name KMS_Key_For_Encryption_On_EBS_Policy \
+      --policy-document file://kms-key-for-encryption-on-ebs.json
+Attach the IAM policy to the role with the following command. Replace 111122223333 with your account ID.
+
+
+aws iam attach-role-policy \
+      --policy-arn arn:aws:iam::111122223333:policy/KMS_Key_For_Encryption_On_EBS_Policy \
+      --role-name AmazonEKS_EBS_CSI_DriverRole
