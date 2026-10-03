@@ -7,13 +7,13 @@ spec:
   - name: nginx
     image: nginx
     ports:
-    - containerPort: 80
+    - containerPort: 80 #nginx default port
    
     livenessProbe:
       httpGet:
         path: /
         port: 8082
-      initialDelaySeconds: 5
+      initialDelaySeconds: 5  #waits 5sec for the nginx to start
       periodSeconds: 10
       failureThreshold: 3
 
