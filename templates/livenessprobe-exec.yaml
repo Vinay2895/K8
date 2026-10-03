@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: liveness-pod
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    ports:
+    - containerPort: 80
+
+    livenessProbe:
+      exec:
+        command:
+        - cat
+        - /usr/share/nginx/html/iindex.html
+      initialDelaySeconds: 5    # Wait 5s after container starts before checking
+      periodSeconds: 10         # Run the check every 10 seconds
+      failureThreshold: 3       # Restart container after 3 failed checks
+
