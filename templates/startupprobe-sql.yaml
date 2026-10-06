@@ -1,0 +1,53 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mysql-liveness-pod
+  labels:
+    app: mysql
+spec:
+  containers:
+  - name: mysql
+    image: mysql:8.0
+    ports:
+    - containerPort: 3306
+    env:
+    - name: MYSQL_ROOT_PASSWORD
+      value: "rootpassword"          # Set a root password
+    - name: MYSQL_DATABASE
+      value: "testdb"                # Optional: create a default database
+    - name: MYSQL_USER
+      value: "testuser"              # Optional: create a test user
+    - name: MYSQL_PASSWORD
+      value: "testpass"              # Optional: create test user password
+
+    # --- STARTUP PROBE ---
+    startupProbe:
+      exec:
+        command:
+        - sh
+        - -c
+        - "mysqladmin ping -h 127.1.2.1 -u root -prootpassword"
+      initialDelaySeconds: 10        # Wait 10s before the first check
+      periodSeconds: 10              # Check every 10s
+      failureThreshold: 30          # wait up to 30 failed health checks, allow up to 5 minutes (30 * 10s) for startup
+
+    # --- LIVENESS PROBE ---
+    livenessProbe:
+      tcpSocket:
+        port: 3306                   # Check if TCP connection to port 3306 is open
+      initialDelaySeconds: 10
+      periodSeconds: 20
+      failureThreshold: 3
+
+    # --- READINESS PROBE ---
+    readinessProbe:
+      exec:
+        command:
+        - sh
+        - -c
+        - "mysqladmin ping -h 127.0.0.1 -u root -prootpassword"
+      initialDelaySeconds: 15
+      periodSeconds: 10
+      failureThreshold: 3
+
+  restartPolicy: Always
