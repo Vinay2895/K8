@@ -9,9 +9,9 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - "result.b16catsvsdogs.xyz"
+    - "result.b16catsvsdogs.shop"
   rules:
-  - host: result.b16catsvsdogs.xyz
+  - host: result.b16catsvsdogs.shop
     http:
       paths:
       - path: /
