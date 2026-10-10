@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: ebs-static
+  name: ebs-static-pvc
 spec:
   storageClassName: "" # An empty string means don’t use any default StorageClass.
   volumeName: ebs-static
@@ -9,4 +9,4 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 3Gi
+      storage: 4Gi
