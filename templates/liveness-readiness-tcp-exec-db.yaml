@@ -7,7 +7,7 @@ metadata:
 spec:
   containers:
   - name: mysql
-    image: mysql:8.0
+    image: mysql:9.0
     ports:
     - containerPort: 3306
     env:
@@ -16,9 +16,9 @@ spec:
     - name: MYSQL_DATABASE
       value: "testdb"                # Optional: create a default database
     - name: MYSQL_USER
-      value: "testuser"              # Optional: create a test user
+      value: "testinguser"              # Optional: create a test user
     - name: MYSQL_PASSWORD
-      value: "testpass"              # Optional: create test user password
+      value: "testingpass"              # Optional: create test user password
 
     livenessProbe:
       tcpSocket:
