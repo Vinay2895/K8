@@ -46,8 +46,8 @@ spec:
         - sh
         - -c
         - "mysqladmin ping -h 127.0.0.1 -u root -prootpassword"
-      initialDelaySeconds: 15
+      initialDelaySeconds: 14
       periodSeconds: 10
-      failureThreshold: 3
+      failureThreshold: 4
 
   restartPolicy: Always
