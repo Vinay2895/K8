@@ -12,7 +12,7 @@ spec:
    topology.kubernetes.io/zone: us-east-1b
 
   containers:
-    - name: facebook-pod-cont
+    - name: facebook-pod-container
       image: devopshubg333/batch16d:fb_httpd
       ports:
         - containerPort: 80
