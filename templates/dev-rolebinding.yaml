@@ -9,5 +9,5 @@ subjects:
   namespace: dev
 roleRef:
   kind: Role
-  name: pod-reader
+  name: pod-reader-dev
   apiGroup: rbac.authorization.k8s.io
