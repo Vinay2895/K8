@@ -10,7 +10,7 @@ metadata:
 
 spec:
   containers:
-    - name: insta-pod-cont
+    - name: insta-pod-container
       image: devopshubg333/batch16d:fb_httpd
       ports:
         - containerPort: 80
@@ -20,5 +20,5 @@ spec:
           cpu: "200m"     # needs at least 0.2 of a CPU core
           memory: "256Mi" # needs at least 256 MB of RAM
         limits:
-          cpu: "500m"     # can use up to 0.5 CPU core
+          cpu: "600m"     # can use up to 0.6 CPU core
           memory: "512Mi" # can use up to 512 MB of RAMresources:
