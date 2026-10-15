@@ -7,8 +7,8 @@ data:
       - system:nodes
       username: system:node:{{EC2PrivateDNSName}}
   mapUsers: |
-    - userarn: arn:aws:iam::141559732042:user/madhu
-      username: madhu
+    - userarn: arn:aws:iam::141559732042:user/vinay
+      username: vinay
       groups:
         - system:authenticated
 
