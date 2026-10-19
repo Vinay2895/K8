@@ -1,6 +1,6 @@
 
 deployment:
- replicacount: 2
+ replicacount: 3
  imageversion: httpd
 service:
  targetport: 80
