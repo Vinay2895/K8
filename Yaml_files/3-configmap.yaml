@@ -7,5 +7,5 @@ metadata:
 
 data:
   Course: AWS DevOps 
-  Trainer: Madhukiran Gorekar
-  Institute: MindCircuit
+  App: AWS Confid
+  ENV: AWS ENV
