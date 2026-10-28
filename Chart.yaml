@@ -1,5 +1,5 @@
-apiVersion: v2
+apiVersion: v2 ## This is a test chart
 name: kindex
 version: 1.0.1
 description: This is index.html code
-appVersion: 1.12.6
+appVersion: 1.11.5
